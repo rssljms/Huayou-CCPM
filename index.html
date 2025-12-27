@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inventory System (Multi-Project)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login-page">
+
+<!-- ================= PRINT HEADER (IMAGE ONLY) ================= -->
+<div id="printHeader">
+  <img src="./images/header.png" class="print-header-image" alt="Header">
+</div>
+
+<!-- ================= LOGIN ================= -->
+<div id="login">
+  <h2>Login</h2>
+  <form id="loginForm">
+    <input id="username" placeholder="Username" required>
+    <input id="password" type="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+  </form>
+  <p id="loginError" class="error hidden">Invalid login</p>
+</div>
+
+<!-- ================= DASHBOARD ================= -->
+<div id="dashboard" class="hidden">
+  <div class="section-card">
+
+    <div class="site-header">
+      <img src="./images/logo.png" class="site-logo" alt="Logo">
+      <h2>Dashboard</h2>
+    </div>
+
+    <div class="project-bar">
+      <select id="projectSelect"></select>
+      <button id="addProjectBtn">+ New Project</button>
+      <button id="archiveProjectBtn">Archive</button>
+      <button id="deleteProjectBtn">Delete</button>
+      <button id="exportProjectPdfBtn">Export PDF</button>
+      <button id="renameProjectBtn">Rename Project</button>
+
+    </div>
+
+    <div class="nav">
+      <button id="deliveryBtn">Delivery</button>
+      <button id="pullOutBtn">Pull Out</button>
+      <button id="areaBtn">Area</button>
+      <button id="inventoryBtn">Inventory</button>
+      <button id="logoutBtn">Logout</button>
+    </div>
+
+    <h3>Material Summary</h3>
+    <input id="summarySearch" placeholder="Search material">
+
+    <button onclick="printSection('summaryTable', 'Material Summary')">
+  Print Summary
+</button>
+
+    <table id="summaryTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Material</th>
+          <th>Delivered</th>
+          <th>Cost</th>
+          <th>Pulled</th>
+          <th>Remaining</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- ================= DELIVERY ================= -->
+<div id="delivery" class="hidden">
+  <div class="section-card">
+
+    <h2>Delivery</h2>
+
+    <div class="form-grid">
+      <input id="date" type="date">
+      <input id="code" placeholder="Code">
+      <input id="material" placeholder="Material">
+      <input id="unitPrice" type="number" placeholder="Price">
+      <input id="quantity" type="number" placeholder="Qty">
+      <input id="unit" placeholder="Unit">
+      <input id="totalAmount" readonly placeholder="Total">
+      <input id="supplier" placeholder="Supplier">
+      <select id="remarks">
+        <option value="">Select</option>
+        <option>CASH BY SITE</option>
+        <option>PURCHASE ORDER</option>
+        <option>TRANSFER</option>
+      </select>
+      <button id="saveDeliveryBtn">Save</button>
+    </div>
+
+    <div class="filters">
+      <input id="deliverySearch" placeholder="Search delivery">
+      <select id="deliveryRemarksFilter">
+        <option value="">All</option>
+        <option>CASH BY SITE</option>
+        <option>PURCHASE ORDER</option>
+        <option>TRANSFER</option>
+      </select>
+    </div>
+
+<button onclick="printSection('deliveryTable', 'Delivery Report')">
+  Print Delivery
+</button>
+
+    <table id="deliveryTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Code</th>
+          <th>Material</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Unit</th>
+          <th>Total</th>
+          <th>Supplier</th>
+          <th>Remarks</th>
+          <th class="no-print">Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <button onclick="showSection('dashboard')">Back</button>
+
+  </div>
+</div>
+
+<!-- ================= PULL OUT ================= -->
+<div id="pullOut" class="hidden">
+  <div class="section-card">
+
+    <h2>Pull Out</h2>
+
+    <select id="deliverySelect"></select>
+
+    <form id="pullOutForm" class="hidden">
+      <input id="pullDate" type="date">
+      <input id="pullCode" placeholder="Pull Code">
+      <input id="pullQuantity" type="number" placeholder="Qty">
+      <input id="pullArea" placeholder="Area">
+      <input id="pullRequester" placeholder="Requester">
+      <button type="submit">Save</button>
+    </form>
+<button onclick="printSection('pullOutTable', 'Pull Out Summary')">
+  Print Inventory
+</button>
+
+    <table id="pullOutTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Pull Code</th>
+          <th>Material</th>
+          <th>Qty</th>
+          <th>Area</th>
+          <th>Requester</th>
+          <th class="no-print">Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <button onclick="showSection('dashboard')">Back</button>
+
+  </div>
+</div>
+
+<!-- ================= AREA ================= -->
+<div id="area" class="hidden">
+  <div class="section-card">
+
+    <h2>Area Usage</h2>
+
+    <select id="areaFilter"></select>
+
+<button onclick="printSection('areaTable', 'Area Report')">
+  Print Inventory
+</button>
+
+    <table id="areaTable">
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Material</th>
+          <th>Qty</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <button onclick="showSection('dashboard')">Back</button>
+
+  </div>
+</div>
+
+<!-- ================= INVENTORY ================= -->
+<div id="inventory" class="hidden">
+  <div class="section-card">
+
+    <h2>Inventory</h2>
+
+    <input id="inventorySearch" placeholder="Search material">
+
+<button onclick="printSection('inventoryTable', 'Inventory Summary')">
+  Print Inventory
+</button>
+
+    <table id="inventoryTable">
+      <thead>
+        <tr>
+          <th>Material</th>
+          <th>Remaining</th>
+          <th class="no-print">Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <button onclick="showSection('dashboard')">Back</button>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
