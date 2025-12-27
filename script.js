@@ -229,8 +229,6 @@ totalAmount.value = '';
 supplier.value = '';
 remarks.value = '';
 
-/* 🔥 FORCE BACK TO DASHBOARD */
-showSection('dashboard');
 };
 
 function loadDeliveryTable(){
@@ -524,3 +522,4 @@ window.showSection = showSection;
 window.printSection = printSection;
 window.editPullOut = editPullOut; 
 });
+
