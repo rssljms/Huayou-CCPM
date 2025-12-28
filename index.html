@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Inventory System (Multi-Project)</title>
+
+  <!-- ✅ PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Theme color for mobile / app -->
+  <meta name="theme-color" content="#2563eb">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -40,7 +47,6 @@
       <button id="deleteProjectBtn">Delete</button>
       <button id="exportProjectPdfBtn">Export PDF</button>
       <button id="renameProjectBtn">Rename Project</button>
-
     </div>
 
     <div class="nav">
@@ -55,8 +61,8 @@
     <input id="summarySearch" placeholder="Search material">
 
     <button onclick="printSection('summaryTable', 'Material Summary')">
-  Print Summary
-</button>
+      Print Summary
+    </button>
 
     <table id="summaryTable">
       <thead>
@@ -109,9 +115,9 @@
       </select>
     </div>
 
-<button onclick="printSection('deliveryTable', 'Delivery Report')">
-  Print Delivery
-</button>
+    <button onclick="printSection('deliveryTable', 'Delivery Report')">
+      Print Delivery
+    </button>
 
     <table id="deliveryTable">
       <thead>
@@ -152,9 +158,10 @@
       <input id="pullRequester" placeholder="Requester">
       <button type="submit">Save</button>
     </form>
-<button onclick="printSection('pullOutTable', 'Pull Out Summary')">
-  Print Inventory
-</button>
+
+    <button onclick="printSection('pullOutTable', 'Pull Out Summary')">
+      Print Inventory
+    </button>
 
     <table id="pullOutTable">
       <thead>
@@ -184,9 +191,9 @@
 
     <select id="areaFilter"></select>
 
-<button onclick="printSection('areaTable', 'Area Report')">
-  Print Inventory
-</button>
+    <button onclick="printSection('areaTable', 'Area Report')">
+      Print Inventory
+    </button>
 
     <table id="areaTable">
       <thead>
@@ -212,9 +219,9 @@
 
     <input id="inventorySearch" placeholder="Search material">
 
-<button onclick="printSection('inventoryTable', 'Inventory Summary')">
-  Print Inventory
-</button>
+    <button onclick="printSection('inventoryTable', 'Inventory Summary')">
+      Print Inventory
+    </button>
 
     <table id="inventoryTable">
       <thead>
@@ -233,5 +240,17 @@
 </div>
 
 <script src="script.js"></script>
+
+<!-- ✅ PWA Service Worker Registration -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(() => console.log('Service Worker registered'))
+      .catch(err => console.error('SW registration failed:', err));
+  });
+}
+</script>
+
 </body>
 </html>
